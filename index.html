@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Granny Garden</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f3f3f3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      font-size: 3rem;
-    }
-    button {
-      font-size: 1.5rem;
-      padding: 0.5rem 1.5rem;
-      cursor: pointer;
-    }
-  </style>
+  <link href="styles.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Granny Garden</h1>
-  <button onclick="location.href='vegetables.html'">Start</button>
+  <div class="container">
+    <header>
+      <img src="your-logo.png" alt="Granny Garden Logo" class="logo"/>
+      <h1>Granny Garden</h1>
+      <p class="tagline">Where vegetables grow and memories bloom</p>
+    </header>
+    
+    <main>
+      <a href="#garden" class="button">Enter the Garden</a>
+    </main>
+
+    <footer>
+      <p>© 2025 Granny Garden</p>
+    </footer>
+  </div>
 </body>
 </html>

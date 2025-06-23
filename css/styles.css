@@ -1,57 +1,52 @@
+/* RESET STYLES */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden;
     font-family: Arial, sans-serif;
 }
 
-.container {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
+/* BACKGROUND (FULLSCREEN) */
+body {
+    background: url('../images/background.png') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('../images/background.png') no-repeat center center;
-    background-size: cover;
 }
 
+/* CENTERED CONTAINER */
+.container {
+    text-align: center;
+    position: relative;
+}
+
+/* GRANNY IMAGE (SMALL LOGO) */
 .granny-image {
-    width: 120px;
+    width: 120px; /* Adjust if too big/small */
     height: auto;
-    margin-bottom: -20px;
-    z-index: 2;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    margin-bottom: 10px;
+    display: block;
 }
 
+/* BUTTON STYLES */
 .start-button {
-    padding: 12px 36px;
-    font-size: 22px;
-    background: linear-gradient(to bottom, #FF9E7D, #FF6B6B);
+    padding: 15px 40px;
+    font-size: 20px;
+    background: #FF6B6B;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
     font-weight: bold;
-    z-index: 1;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 2px solid #fff;
 }
 
 .start-button:hover {
-    background: linear-gradient(to bottom, #FF8A6B, #FF5252);
+    background: #FF5252;
     transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.start-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

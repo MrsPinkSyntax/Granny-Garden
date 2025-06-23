@@ -3,24 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Granny's App</title>
+    <title>Giardino della Nonna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
     <style>
-        /* Reset margins/padding and fullscreen background */
+        /* Reset and fullscreen background */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
+            font-family: 'Chewy', cursive;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
-        /* Background image (fullscreen) */
+        /* Background */
         body {
             background: url('images/background.png') no-repeat center center;
             background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Big animated title */
+        .title {
+            font-size: 4.5rem; /* Bigger size */
+            margin: 0 0 20px 0;
+            background: linear-gradient(90deg, 
+                #8BC34A, #FF9800, #E91E63, #4CAF50, #8BC34A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            letter-spacing: 3px;
+            line-height: 1;
+            padding: 0 20px;
+            white-space: nowrap;
+            background-size: 300% auto;
+            animation: rainbow 8s linear infinite;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Rainbow color animation */
+        @keyframes rainbow {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Granny image with float effect */
+        .granny-image {
+            width: 160px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Button styles */
+        .start-button {
+            padding: 16px 45px;
+            font-size: 24px;
+            background: linear-gradient(to bottom, #FF9E7D, #FF6B6B);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 3px solid white;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Button hover effect */
+        .start-button:hover {
+            background: linear-gradient(to bottom, #FF8A6B, #FF5252);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sparkle effect */
+        .start-button::after {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .start-button:hover::after {
+            opacity: 1;
+            top: -5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- We'll add content here later -->
+    <!-- Big animated title -->
+    <h1 class="title">GIARDINO DELLA NONNA</h1>
+    
+    <!-- Floating granny image -->
+    <img src="images/granny.png" alt="Granny" class="granny-image">
+    
+    <!-- Sparkly button -->
+    <button class="start-button" onclick="window.location.href='vegetables.html'">INIZIA</button>
 </body>
 </html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costruisci con Verdure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Chewy', cursive;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background: url('../images/background.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Title */
+        .title {
+            font-size: 3rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #4CAF50;
+            text-shadow: 3px 3px 0 #FFD700;
+            letter-spacing: 2px;
+        }
+
+        /* Vegetable grid */
+        .vegetable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vegetable-item {
+            background: rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 3px dashed transparent;
+        }
+
+        .vegetable-item:hover {
+            transform: scale(1.1);
+            border-color: #FF9800;
+        }
+
+        .vegetable-item img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        /* Granny in corner */
+        .granny-corner {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 180px;
+            transform: rotate(-15deg);
+            z-index: 10;
+            filter: drop-shadow(5px 5px 0 rgba(0,0,0,0.2));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(-15deg) translateY(0); }
+            50% { transform: rotate(-15deg) translateY(-10px); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .title { font-size: 2rem; }
+            .granny-corner { width: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">CHE COSA VUOI COSTRUIRE IN LEGO?</h1>
+    
+    <div class="vegetable-grid">
+        <!-- Vegetable placeholders - replace with your images -->
+        <div class="vegetable-item">
+            <img src="images/vegetables/carrot.png" alt="Carota">
+        </div>
+        <div class="vegetable-item">
+            <img src="images/vegetables/tomato.png" alt="Pomodoro">
+        </div>
+        <div class="vegetable-item">
+            <img src="images/vegetables/eggplant.png" alt="Melanzana">
+        </div>
+        <div class="vegetable-item">
+            <img src="images/vegetables/pepper.png" alt="Peperone">
+        </div>
+        <div class="vegetable-item">
+            <img src="images/vegetables/broccoli.png" alt="Broccolo">
+        </div>
+        <div class="vegetable-item">
+            <img src="images/vegetables/corn.png" alt="Mais">
+        </div>
+        <!-- Add more vegetables as needed -->
+    </div>
+
+    <!-- Granny in corner -->
+    <img src="../images/granny.png" alt="Granny" class="granny-corner">
+
+    <script>
+        // This will be used later for selection functionality
+        document.querySelectorAll('.vegetable-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+    </script>
+</body>
+</html>

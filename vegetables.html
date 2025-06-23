@@ -1,169 +1,184 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giardino della Nonna - Seleziona</title>
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: 'Chewy', cursive;
-            background: url('images/background.png') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giardino della Nonna - Seleziona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Chewy', cursive;
+      background: url('images/background.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .title {
-            color: #4CAF50;
-            text-shadow: 3px 3px 0 #FFD700;
-            font-size: 2.5rem;
-            margin: 20px 0;
-            text-align: center;
-            padding: 0 15px;
-        }
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      max-width: 1000px;
+      width: 100%;
+    }
 
-        .vegetable-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            max-width: 800px;
-        }
+    .title {
+      color: #4CAF50;
+      text-shadow: 3px 3px 0 #FFD700;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 0 15px;
+    }
 
-        .vegetable-item {
-            background: rgba(255,255,255,0.85);
-            border-radius: 20px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: 3px dashed transparent;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .vegetable-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 800px;
+    }
 
-        .vegetable-item.selected {
-            border-color: #FF6B6B;
-            background: rgba(255,255,255,0.95);
-            transform: scale(1.05);
-        }
+    .vegetable-item {
+      background: rgba(255,255,255,0.85);
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 3px dashed transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .vegetable-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            margin-bottom: 10px;
-        }
+    .vegetable-item.selected {
+      border-color: #FF6B6B;
+      background: rgba(255,255,255,0.95);
+      transform: scale(1.05);
+    }
 
-        .vegetable-name {
-            font-size: 1.2rem;
-            color: #4CAF50;
-            text-shadow: 1px 1px 0 white;
-        }
+    .vegetable-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
 
-        #buildButton {
-            background: #FF6B6B;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-family: 'Chewy', cursive;
-            font-size: 1.5rem;
-            margin: 20px 0;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
+    .vegetable-name {
+      font-size: 1.2rem;
+      color: #4CAF50;
+      text-shadow: 1px 1px 0 white;
+    }
 
-        #buildButton:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+    #buildButton {
+      background: #FF6B6B;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-family: 'Chewy', cursive;
+      font-size: 1.5rem;
+      margin-top: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
 
-        #buildButton:not(:disabled):hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
+    #buildButton:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-        .granny-corner {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            width: 150px;
-            z-index: 10;
-        }
+    #buildButton:not(:disabled):hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
 
-        @media (max-width: 768px) {
-            .vegetable-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    .granny-corner {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      width: 250px;
+      transform: rotate(10deg);
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .vegetable-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .granny-corner {
+        width: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="main-wrapper">
     <h1 class="title">Scegli la tua verdura LEGO!</h1>
-    
+
     <div class="vegetable-grid">
-        <div class="vegetable-item" data-veggie="broccolo">
-            <img src="images/veggies/broccolo.png" alt="Broccolo">
-            <div class="vegetable-name">BROCCOLO</div>
-        </div>
-        <div class="vegetable-item" data-veggie="carota">
-            <img src="images/veggies/carota.png" alt="Carota">
-            <div class="vegetable-name">CAROTA</div>
-        </div>
-        <div class="vegetable-item" data-veggie="cipolla">
-            <img src="images/veggies/cipolla.png" alt="Cipolla">
-            <div class="vegetable-name">CIPOLLA</div>
-        </div>
-        <div class="vegetable-item" data-veggie="melanzana">
-            <img src="images/veggies/melanzana.png" alt="Melanzana">
-            <div class="vegetable-name">MELANZANA</div>
-        </div>
-        <div class="vegetable-item" data-veggie="peperone">
-            <img src="images/veggies/peperone.png" alt="Peperone">
-            <div class="vegetable-name">PEPERONE</div>
-        </div>
-        <div class="vegetable-item" data-veggie="pomodoro">
-            <img src="images/veggies/pomodoro.png" alt="Pomodoro">
-            <div class="vegetable-name">POMODORO</div>
-        </div>
+      <div class="vegetable-item" data-veggie="broccolo">
+        <img src="images/veggies/broccolo.png" alt="Broccolo" />
+        <div class="vegetable-name">BROCCOLO</div>
+      </div>
+      <div class="vegetable-item" data-veggie="carota">
+        <img src="images/veggies/carota.png" alt="Carota" />
+        <div class="vegetable-name">CAROTA</div>
+      </div>
+      <div class="vegetable-item" data-veggie="cipolla">
+        <img src="images/veggies/cipolla.png" alt="Cipolla" />
+        <div class="vegetable-name">CIPOLLA</div>
+      </div>
+      <div class="vegetable-item" data-veggie="melanzana">
+        <img src="images/veggies/melanzana.png" alt="Melanzana" />
+        <div class="vegetable-name">MELANZANA</div>
+      </div>
+      <div class="vegetable-item" data-veggie="peperone">
+        <img src="images/veggies/peperone.png" alt="Peperone" />
+        <div class="vegetable-name">PEPERONE</div>
+      </div>
+      <div class="vegetable-item" data-veggie="pomodoro">
+        <img src="images/veggies/pomodoro.png" alt="Pomodoro" />
+        <div class="vegetable-name">POMODORO</div>
+      </div>
     </div>
 
     <button id="buildButton" disabled>COSTRUISCI!</button>
+  </div>
 
-    <img src="images/granny.png" class="granny-corner" alt="Nonnina">
+  <img src="images/granny.png" class="granny-corner" alt="Nonnina" />
 
-    <script>
-        document.querySelectorAll('.vegetable-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Deselect all others
-                document.querySelectorAll('.vegetable-item').forEach(i => {
-                    i.classList.remove('selected');
-                });
-                // Select this one
-                this.classList.add('selected');
-                document.getElementById('buildButton').disabled = false;
-            });
+  <script>
+    document.querySelectorAll('.vegetable-item').forEach(item => {
+      item.addEventListener('click', function () {
+        document.querySelectorAll('.vegetable-item').forEach(i => {
+          i.classList.remove('selected');
         });
+        this.classList.add('selected');
+        document.getElementById('buildButton').disabled = false;
+      });
+    });
 
-        document.getElementById('buildButton').addEventListener('click', function() {
-            const selected = document.querySelector('.vegetable-item.selected');
-            if (selected) {
-                localStorage.setItem('selectedVeggie', selected.dataset.veggie);
-                window.location.href = 'builder.html';
-            }
-        });
-    </script>
+    document.getElementById('buildButton').addEventListener('click', function () {
+      const selected = document.querySelector('.vegetable-item.selected');
+      if (selected) {
+        localStorage.setItem('selectedVeggie', selected.dataset.veggie);
+        window.location.href = 'builder.html';
+      }
+    });
+  </script>
 </body>
 </html>

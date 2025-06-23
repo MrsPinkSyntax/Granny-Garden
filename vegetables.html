@@ -1,129 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Costruisci con Verdure</title>
+    <title>Giardino della Nonna - Seleziona</title>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
     <style>
-        /* Reset and background */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
             font-family: 'Chewy', cursive;
-            overflow-x: hidden;
-        }
-        
-        body {
-            background: url('../images/background.png') no-repeat center center;
+            background: url('images/background.png') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            align-items: center;
         }
 
-        /* Title */
         .title {
-            font-size: 3rem;
-            text-align: center;
-            margin: 20px 0;
             color: #4CAF50;
             text-shadow: 3px 3px 0 #FFD700;
-            letter-spacing: 2px;
+            font-size: 2.5rem;
+            margin: 20px 0;
+            text-align: center;
+            padding: 0 15px;
         }
 
-        /* Vegetable grid */
         .vegetable-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px;
             max-width: 800px;
-            margin: 0 auto;
         }
 
         .vegetable-item {
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.85);
             border-radius: 20px;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
             border: 3px dashed transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .vegetable-item:hover {
-            transform: scale(1.1);
-            border-color: #FF9800;
+        .vegetable-item.selected {
+            border-color: #FF6B6B;
+            background: rgba(255,255,255,0.95);
+            transform: scale(1.05);
         }
 
         .vegetable-item img {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
         }
 
-        /* Granny in corner */
+        .vegetable-name {
+            font-size: 1.2rem;
+            color: #4CAF50;
+            text-shadow: 1px 1px 0 white;
+        }
+
+        #buildButton {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-family: 'Chewy', cursive;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        #buildButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #buildButton:not(:disabled):hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
         .granny-corner {
             position: fixed;
             left: 20px;
             bottom: 20px;
-            width: 180px;
-            transform: rotate(-15deg);
+            width: 150px;
             z-index: 10;
-            filter: drop-shadow(5px 5px 0 rgba(0,0,0,0.2));
-            animation: float 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: rotate(-15deg) translateY(0); }
-            50% { transform: rotate(-15deg) translateY(-10px); }
-        }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .title { font-size: 2rem; }
-            .granny-corner { width: 120px; }
+            .vegetable-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 class="title">CHE COSA VUOI COSTRUIRE IN LEGO?</h1>
+    <h1 class="title">Scegli la tua verdura LEGO!</h1>
     
     <div class="vegetable-grid">
-        <!-- Vegetable placeholders - replace with your images -->
-        <div class="vegetable-item">
-            <img src="images/vegetables/carrot.png" alt="Carota">
+        <div class="vegetable-item" data-veggie="broccolo">
+            <img src="images/veggies/broccolo.png" alt="Broccolo">
+            <div class="vegetable-name">BROCCOLO</div>
         </div>
-        <div class="vegetable-item">
-            <img src="images/vegetables/tomato.png" alt="Pomodoro">
+        <div class="vegetable-item" data-veggie="carota">
+            <img src="images/veggies/carota.png" alt="Carota">
+            <div class="vegetable-name">CAROTA</div>
         </div>
-        <div class="vegetable-item">
-            <img src="images/vegetables/eggplant.png" alt="Melanzana">
+        <div class="vegetable-item" data-veggie="cipolla">
+            <img src="images/veggies/cipolla.png" alt="Cipolla">
+            <div class="vegetable-name">CIPOLLA</div>
         </div>
-        <div class="vegetable-item">
-            <img src="images/vegetables/pepper.png" alt="Peperone">
+        <div class="vegetable-item" data-veggie="melanzana">
+            <img src="images/veggies/melanzana.png" alt="Melanzana">
+            <div class="vegetable-name">MELANZANA</div>
         </div>
-        <div class="vegetable-item">
-            <img src="images/vegetables/broccoli.png" alt="Broccolo">
+        <div class="vegetable-item" data-veggie="peperone">
+            <img src="images/veggies/peperone.png" alt="Peperone">
+            <div class="vegetable-name">PEPERONE</div>
         </div>
-        <div class="vegetable-item">
-            <img src="images/vegetables/corn.png" alt="Mais">
+        <div class="vegetable-item" data-veggie="pomodoro">
+            <img src="images/veggies/pomodoro.png" alt="Pomodoro">
+            <div class="vegetable-name">POMODORO</div>
         </div>
-        <!-- Add more vegetables as needed -->
     </div>
 
-    <!-- Granny in corner -->
-    <img src="../images/granny.png" alt="Granny" class="granny-corner">
+    <button id="buildButton" disabled>COSTRUISCI!</button>
+
+    <img src="images/granny.png" class="granny-corner" alt="Nonnina">
 
     <script>
-        // This will be used later for selection functionality
         document.querySelectorAll('.vegetable-item').forEach(item => {
             item.addEventListener('click', function() {
-                this.classList.toggle('selected');
+                // Deselect all others
+                document.querySelectorAll('.vegetable-item').forEach(i => {
+                    i.classList.remove('selected');
+                });
+                // Select this one
+                this.classList.add('selected');
+                document.getElementById('buildButton').disabled = false;
             });
+        });
+
+        document.getElementById('buildButton').addEventListener('click', function() {
+            const selected = document.querySelector('.vegetable-item.selected');
+            if (selected) {
+                localStorage.setItem('selectedVeggie', selected.dataset.veggie);
+                window.location.href = 'builder.html';
+            }
         });
     </script>
 </body>

@@ -18,17 +18,18 @@
 
     h1 {
       margin-top: 20px;
-      font-size: 2.5rem;
+      margin-bottom: 5px;
+      font-size: 4rem;
       color: #4CAF50;
       text-shadow: 2px 2px #FFD700;
     }
 
     .builder-container {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       gap: 30px;
-      margin: 30px;
+      margin: 10px;
     }
 
     .grid-container {
@@ -58,6 +59,35 @@
       z-index: 2;
     }
 
+    .side-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-right: 20px;
+    }
+
+    .side-info-box {
+      background: #fff4cc;
+      border-radius: 15px;
+      padding: 20px;
+      width: 260px;                    
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      text-align: center;
+      margin-bottom: 20px;
+      word-wrap: break-word;          
+      overflow-wrap: break-word;     
+    }
+
+    .side-info p {
+      font-size: 1.3rem;
+      color: #333;
+      margin: 0;
+    }
+
+    .side-info .btn {
+      margin-top: 10px;
+    }
+
     .palette-container {
       display: flex;
       flex-direction: column;
@@ -65,8 +95,8 @@
     }
 
     .palette-title, .tools-title {
-      font-size: 1.2rem;
-      color: #333;
+      font-size: 2rem;
+      color: #0d752c;
       text-align: center;
       font-weight: bold;
     }
@@ -74,9 +104,9 @@
     .palette {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 5px;
+      gap: 10px;
       background: rgba(255,255,255,0.9);
-      padding: 10px;
+      padding: 15px;
       border-radius: 10px;
     }
 
@@ -84,42 +114,53 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: #333;
     }
 
-    .color-option {
+    .color-option, .tool-option {
       width: 48px;
       height: 48px;
       background-size: cover;
-      border: 3px solid transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      image-rendering: pixelated;
+      -webkit-image-rendering: pixelated;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 2px #000000;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 5px;
-      margin-top: 5px;
       transition: 0.2s;
     }
 
-    .color-option.selected {
+    .color-option.selected, .tool-option.selected {
       border-color: #FF6B6B;
+      box-shadow: 0 0 6px rgba(255, 107, 107, 0.6), 0 0 0 2px #000;
       transform: scale(1.1);
     }
 
     .tools {
       display: flex;
-      justify-content: center;
+      align-items: center;
       gap: 15px;
       background: rgba(255,255,255,0.9);
-      padding: 10px;
+      padding: 15px;
       border-radius: 10px;
+      justify-content: center;
     }
 
     .tool-option {
       width: 48px;
       height: 48px;
       background-size: cover;
-      border: 3px solid transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      image-rendering: pixelated;
+      -webkit-image-rendering: pixelated;
+      border: 2px solid #ffffff; /* White border for contrast */
+      box-shadow: 0 0 0 2px #000000; /* Black contour */
+      border-radius: 4px;
       cursor: pointer;
-      border-radius: 5px;
       transition: 0.2s;
     }
 
@@ -130,25 +171,22 @@
 
     .buttons {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
+      gap: 15px;
+      justify-content: center;
       margin-top: 10px;
     }
 
     .btn {
-      padding: 5px 15px;
+      padding: 12px 25px;
       background: #FF6B6B;
       color: white;
-      font-size: 1rem;
+      font-size: 1.2rem;
       border-radius: 30px;
       border: none;
       font-family: 'Chewy', cursive;
       cursor: pointer;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
       transition: 0.3s;
-      width: 180px;
-      text-align: center;
     }
 
     .btn:hover {
@@ -156,7 +194,7 @@
     }
 
     .veggie-reference {
-      width: 250px;
+      width: 350px;
       margin-top: 15px;
       border: 5px solid white;
       border-radius: 15px;
@@ -166,26 +204,30 @@
 </head>
 <body>
 
-  <h1>Costruisci <span id="veggie-name"></span> LEGO!</h1>
+  <h1>COSTRUISCI <span id="veggie-name"></span> LEGO!</h1>
 
   <div class="builder-container">
+
+    <div class="side-info">
+      <div class="side-info-box">
+        <p>DESCRIZIONE: In questa sezione del gioco puoi costruire con riferimento all'immagine in basso a destra il tuo lego, oppure costruire quello che vuoi come l'ortaggio su un orto! Divertiti e se vuoi un'altro lego da costruire clicca sul tasto qui sotto...</p>
+      </div>
+      <button class="btn" onclick="window.location.href='vegetables.html'">TORNA INDIETRO</button>
+    </div>
+
     <div class="grid-container">
       <div class="lego-grid"></div>
     </div>
 
     <div class="palette-container">
-      <div class="palette-title">Colori</div>
+      <div class="palette-title">COLORI</div>
       <div class="palette" id="colorPalette"></div>
 
-      <div class="tools-title">Strumenti</div>
+      <div class="tools-title">STRUMENTI</div>
       <div class="tools">
         <div class="tool-option" id="eraser" title="Gomma" style="background-image: url('images/lego/gomma.png');"></div>
-        <div class="tool-option" id="dropper" title="Contagocce" style="background-image: url('images/lego/dropper.png');"></div>
-      </div>
-
-      <div class="buttons">
+        <span style="font-size: 1rem;">GOMMA</span>
         <button class="btn" id="clearBtn">🗑️ Cancella Tutto</button>
-        <button class="btn" onclick="window.location.href='vegetables.html'">🔙 Torna alla Scelta</button>
       </div>
 
       <img id="veggie-ref" class="veggie-reference" src="" alt="Modello">
@@ -194,10 +236,10 @@
 
   <script>
     const colors = [
-      "bianco", "giallo", "gialloscuro", "arancione",
-      "rosso", "rossoscuro", "viola", "lilla",
-      "blu", "azzurro", "lime", "verdechiaro",
-      "verde", "verdescuro", "nero"
+      "bianco", "giallo", "giallo scuro", "arancione",
+      "rosso", "rosso scuro", "viola", "lilla",
+      "blu", "azzurro", "lime", "verde chiaro",
+      "verde", "verde scuro", "nero"
     ];
 
     const gridSize = 25;
@@ -220,11 +262,11 @@
       label.textContent = color.toUpperCase();
       const block = document.createElement('div');
       block.className = 'color-option';
-      block.style.backgroundImage = `url('images/lego/${color}.png')`;
+      block.style.backgroundImage = `url('images/lego/${color.replace(/ /g, '')}.png')`;
       block.addEventListener('click', () => {
         clearSelection();
         block.classList.add('selected');
-        selectedColor = color;
+        selectedColor = color.replace(/ /g, '');
         isEraser = false;
         isDropper = false;
       });
@@ -238,13 +280,6 @@
       document.getElementById('eraser').classList.add('selected');
       isEraser = true;
       isDropper = false;
-    });
-
-    document.getElementById('dropper').addEventListener('click', () => {
-      clearSelection();
-      document.getElementById('dropper').classList.add('selected');
-      isDropper = true;
-      isEraser = false;
     });
 
     function clearSelection() {
@@ -272,23 +307,7 @@
       const x = Math.floor((e.clientX - rect.left) / cellSize);
       const y = Math.floor((e.clientY - rect.top) / cellSize);
       if (x < 0 || y < 0 || x >= gridSize || y >= gridSize) return;
-
-      if (isDropper) {
-        const target = document.querySelector(`.lego-brick[data-x="${x}"][data-y="${y}"]`);
-        if (target) {
-          const match = /\/([\w]+)\.png/.exec(target.style.backgroundImage);
-          if (match) {
-            selectedColor = match[1];
-            isDropper = false;
-            clearSelection();
-            document.querySelectorAll('.color-option').forEach(el => {
-              if (el.style.backgroundImage.includes(selectedColor)) el.classList.add('selected');
-            });
-          }
-        }
-      } else {
-        placeBrick(x, y);
-      }
+      placeBrick(x, y);
     });
 
     document.getElementById('clearBtn').addEventListener('click', () => {

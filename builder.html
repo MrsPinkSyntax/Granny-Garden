@@ -17,7 +17,7 @@
     }
 
     h1 {
-      margin-top: 20px;
+      margin-top: 10px;
       margin-bottom: 5px;
       font-size: 4rem;
       color: #4CAF50;
@@ -29,7 +29,51 @@
       flex-wrap: nowrap;
       justify-content: center;
       gap: 30px;
-      margin: 10px;
+      margin: 0px 10px;
+    }
+
+    .grid-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .top-indicators {
+      display: grid;
+      grid-template-columns: repeat(25, 32px);
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #2d2d2d;
+      margin: 50px 0 5px 32px;
+    }
+
+    .top-indicators div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+    }
+
+    .grid-row-wrapper {
+      display: flex;
+    }
+
+    .side-indicators {
+      display: grid;
+      grid-template-rows: repeat(25, 32px);
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #2d2d2d;
+      margin-right: 5px;
+    }
+
+    .side-indicators div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 32px;
+      padding-right: 4px;
     }
 
     .grid-container {
@@ -70,12 +114,12 @@
       background: #fff4cc;
       border-radius: 15px;
       padding: 20px;
-      width: 260px;                    
+      width: 260px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       text-align: center;
       margin-bottom: 20px;
-      word-wrap: break-word;          
-      overflow-wrap: break-word;     
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .side-info p {
@@ -149,26 +193,6 @@
       justify-content: center;
     }
 
-    .tool-option {
-      width: 48px;
-      height: 48px;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      image-rendering: pixelated;
-      -webkit-image-rendering: pixelated;
-      border: 2px solid #ffffff; /* White border for contrast */
-      box-shadow: 0 0 0 2px #000000; /* Black contour */
-      border-radius: 4px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .tool-option.selected {
-      border-color: #FF6B6B;
-      transform: scale(1.1);
-    }
-
     .buttons {
       display: flex;
       gap: 15px;
@@ -200,6 +224,42 @@
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
+
+    .label-green {
+      position: absolute;
+      font-size: 2.4rem;
+      font-weight: bold;
+      color: rgb(204, 117, 2);
+      text-align: center;
+    }
+
+    .label-top {
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .label-bottom {
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .label-left, .label-right {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.4rem;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+
+    .label-left {
+      left: -70px;
+    }
+
+    .label-right {
+      right: -45px;
+    }
   </style>
 </head>
 <body>
@@ -215,8 +275,18 @@
       <button class="btn" onclick="window.location.href='vegetables.html'">TORNA INDIETRO</button>
     </div>
 
-    <div class="grid-container">
-      <div class="lego-grid"></div>
+    <div class="grid-wrapper">
+      <div class="top-indicators"></div>
+      <div class="grid-row-wrapper">
+        <div class="side-indicators"></div>
+        <div class="grid-container">
+          <div class="lego-grid"></div>
+          <div class="label-green label-top">SOPRA</div>
+          <div class="label-green label-bottom">SOTTO</div>
+          <div class="label-green label-left">SINISTRA</div>
+          <div class="label-green label-right">DESTRA</div>
+        </div>
+      </div>
     </div>
 
     <div class="palette-container">
@@ -253,7 +323,6 @@
 
     let selectedColor = colors[0];
     let isEraser = false;
-    let isDropper = false;
 
     colors.forEach(color => {
       const wrapper = document.createElement('div');
@@ -268,7 +337,6 @@
         block.classList.add('selected');
         selectedColor = color.replace(/ /g, '');
         isEraser = false;
-        isDropper = false;
       });
       wrapper.appendChild(label);
       wrapper.appendChild(block);
@@ -279,7 +347,6 @@
       clearSelection();
       document.getElementById('eraser').classList.add('selected');
       isEraser = true;
-      isDropper = false;
     });
 
     function clearSelection() {
@@ -315,6 +382,22 @@
     });
 
     document.querySelector('.color-option').classList.add('selected');
+
+    const topIndicators = document.querySelector('.top-indicators');
+    const sideIndicators = document.querySelector('.side-indicators');
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let i = 0; i < gridSize; i++) {
+      const letter = document.createElement('div');
+      letter.textContent = alphabet[i];
+      letter.style.textAlign = 'center';
+      topIndicators.appendChild(letter);
+    }
+    for (let i = 1; i <= gridSize; i++) {
+      const number = document.createElement('div');
+      number.textContent = i;
+      number.style.textAlign = 'right';
+      sideIndicators.appendChild(number);
+    }
   </script>
 </body>
 </html>
